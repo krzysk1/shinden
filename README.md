@@ -12,7 +12,7 @@ Installation
 
 1. Unzip file and move the folder "shinden" to C:\Users\~\Documents\Aerofly FS2\aircraft.
 
-2. Copy all *.tsb files of "cessna172" and "f18" from your aeroflyFS installation path into "shinden" folder.
+2. Copy all *.tsb files of "F4U" from your aerofly FS2 installation path into "shinden" folder.
 
  ==================================================================================================================
  This file download from the CadNav
