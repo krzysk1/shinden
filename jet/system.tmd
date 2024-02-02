@@ -1,0 +1,53 @@
+<[file][][]
+
+	// Kyushu J7W2 Shinden-kai (jet engine)
+	
+    <[modelmanager][][]
+        <[pointer_list_tmgraphics][DynamicObjects][]
+	
+			//One 900 kg thrust Ne-130 axial-flow turbojet
+			<[turbojet][Engine][]
+				<[string8][Body][Fuselage]>
+				<[float64][MaximumThrust][900]>
+				<[tmvector3d][R0][-3.867 0.0 0.539]>
+				<[string8][ThrottleControl][ServoThrottle.Output]>
+				<[float64][RotationInertia][6.0]>
+				<[float64][IdleFraction][0.01]>
+			>
+			<[integral][EngineRotationAngle][]
+				<[float64][Input][50]>
+			>
+			<[output_free][EngineRotationAngleOutput][]
+				<[string8][Input][EngineRotationAngle.Output]>
+			>
+			<[output][EngineRotation][]
+				<[string8][Input][Engine.N2]>
+			>
+			<[output][EngineRotationN1][]
+				<[string8][Input][Engine.N1]>
+			>
+			<[output][ExhaustTemperature][]
+				<[string8][Input][Engine.TotalTemperature45]>
+			>
+			<[output][FuelFlow][]
+				<[string8][Input][Engine.FuelFlow]>
+			>		
+        >
+        <[pointer_list_tmgraphics][GraphicObjects][]
+
+            <[rigidbodygraphics][JetEngine][]
+                <[string8][GeometryList][ Innderturbinehouse Outerblades Turbinehouse ]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][OrientationID][Fuselage.Q]>
+            >
+            <[rotatingbodygraphics][Turbine][]
+                <[string8][GeometryList][ Turbineblades Turbinespinner ]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][AngleID][EngineRotationAngle.Output]>
+                <[tmvector3d][Axis][1.0 0.0 0.0]>
+                <[tmvector3d][Pivot][-3.4923 -0.0004 0.6922]>
+            >
+        >
+    >
+>

@@ -1,0 +1,158 @@
+<[file][][]
+
+	// Kyushu J7W1 Shinden (piston engine)
+
+    <[modelmanager][][]
+        <[pointer_list_tmgraphics][DynamicObjects][]
+		
+            // Propulsors
+			
+			// Propeller: 6-bladed metal constant-speed pusher propeller
+
+            <[rigidbody][PropellerBody][]
+                <[float64][Mass][50.0]>
+                <[tmvector3d][InertiaLength][ 0.2 3.35 3.35 ]>
+                <[tmvector3d][R0][-4.167 0.0 0.539]>
+                <[tmmatrix3d][B0][1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]>
+            >
+            <[multibody_joint][PropellerJoint][]
+                <[tmvector3d][X0][ 1.0 0.0 0.0]>
+                <[float64][Kp][0.0]>
+                <[float64][Kd][0.0]>
+                <[string8][Body0][Fuselage]>
+                <[string8][Body1][PropellerBody]>
+                <[tmvector3d][R0][-4.167 0.0 0.539]>
+                <[uint32][Type][0]>
+                <[float64][InitialVelocity][72.0]>
+            >
+            <[airfoil][AirfoilPropeller][]
+                <[float64][Cl0][0.0]>
+                <[float64][Cd0][0.005]>
+                <[float64][Cm0][0.0]>
+                <[float64][ClAlpha][5.729578]>
+                <[float64][CdAlpha][0.687549]>
+                <[float64][CmAlpha][0.0]>
+                <[float64][Cd0Base][0.0]>
+                <[float64][ClAlphaBase][3.2]>
+                <[float64][CdAlphaBase][1.8]>
+                <[float64][CmAlphaBase][-0.45]>
+                <[float64][AttachedCenter][0.0]>
+                <[float64][AttachedRange][0.174533]>
+                <[float64][StallRange][0.139626]>
+                <[float64][AttachedCenterFlap][-0.12]>
+            >
+            <[propeller][Propeller][]
+                <[tmvector3d][R0][-4.167 0.0 0.539]>
+                <[tmvector3d][X0][-1.0 0.0 0.0]>
+                <[tmvector3d][Y0][0.0 1.0 0.0]>
+                <[tmvector3d][Z0][0.0 0.0 1.0]>
+                <[float64][Radius][1.6764]>
+                <[float64][CutOut][0.2]>
+                <[float64][LateralDragCoefficient][0.0]>
+                <[string8][Airfoil][AirfoilPropeller]>
+                <[string8][Body][PropellerBody]>
+                <[string8][EngineRotationSpeed][DriveShaft.GetRotationSpeed]>
+                <[uint32][NumberBlades][6]>
+                <[float64][AspectRatio][10.15]>
+                <[float64][LateralForceCoefficient][1.0]>
+                <[float64][TorqueReduction][0.0]>
+                <[string8][DamageOnCrash][Engine.Damage]>
+             //   <[float64][SideThrust][0.1745]>
+                <[string8][PitchControl][Governor.Output]>
+            >
+            <[governor][Governor][]
+                <[string8][RotationSpeed][DriveShaft.GetRotationSpeed]>
+                <[string8][SpeedControl][ServoPropSpeed.Output]>
+                <[float64][PitchMinimum][0.122173]> 
+                <[float64][PitchMaximum][0.872665]> 
+            >
+            <[output][GovernorPitch][]
+                <[string8][Input][Governor.Output]>
+            >
+            <[collisionblade][CollisionPropeller][]
+                <[string8][Body][PropellerBody]>
+                <[string8][Geometry][Propellerdisk]>
+                <[string8][DamageOnCrash][Propeller.Damage]>
+            >
+            <[jointtorque][DriveShaft][]
+                <[tmvector3d][Z0][-1.0 0.0 0.0]>
+                <[string8][Body0][Fuselage]>
+                <[string8][Body1][PropellerBody]>
+                <[float64][Friction][0.0]>
+            >
+
+
+            // Engines  Mitsubishi Ha-43 Model 12
+			// (MK9D - IJNAS) 18-cylinder air-cooled radial piston engine, 1,590 kW (2,130 hp) for take-off
+			// 2,020 hp (1,510 kW) at 1,180 m (3,870 ft)1,160 hp (870 kW) at 8,700 m (28,500 ft) 
+			
+            <[engine][Engine][]
+                <[string8][ThrottleControl][ServoThrottle.Output]>
+                <[string8][RotationSpeed][DriveShaft.RotationSpeed]>
+                <[string8][AddTorque][DriveShaft.AddTorque]>
+                <[string8][AddInertia][DriveShaft.AddInertia]>				
+                <[float64][RotationInertia][1.1776]>
+                <[float64][ThrottleIdle][0.13]>
+                <[float64][Friction][50.0]>
+                <[float64][RatedRotationSpeed][290.0]>
+                <[float64][RatedPower][1588339]>
+                <[float64][Displacement][0.0417]>
+            >
+
+            <[output][RotationSpeed][]
+                <[string8][Input][DriveShaft.GetRotationSpeed]>
+            >
+            <[product][NormalizedPropellerSpeed][]
+                <[string8][Inputs][ DriveShaft.RotationSpeed 0.003448 ]>
+            >
+            <[sender][SenderPower][]
+                <[string8][Input][NormalizedPropellerSpeed.Output]>
+                <[string8][Message][Aircraft.Power]>
+            >
+            <[output][ManifoldPressure][]
+                <[string8][Input][Engine.ManifoldPressure]>
+            >
+            <[output][FuelFlow][]
+                <[string8][Input][Engine.FuelFlow]>
+            >		
+	
+        >
+        <[pointer_list_tmgraphics][GraphicObjects][]
+
+            <[propellergraphics][Propeller][]
+                <[string8][GeometryList][ Propellerdisk ]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][AngleID][Propeller.RotationAngle]>
+                <[uint32][RotationSpeedID][Propeller.RotationSpeed]>
+                <[uint32][DamageID][Propeller.Damaged]>
+                <[tmvector3d][Axis][-0.999994 0.000671 0.003487]>
+                <[tmvector3d][Pivot][-4.1155 0.0004 0.6755]>
+                <[uint32][BladeNumber][6]>
+                <[float64][Radius][1.67]>
+                <[float64][RotationSpeedFade][100.0]>
+                <[uint32][NumberStops][0]>
+            >
+            <[rotatingbodygraphics][PropellerCone][]
+                <[string8][GeometryList][ Engine Spinner ]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][AngleID][Propeller.RotationAngle]>
+                <[tmvector3d][Axis][-0.999994 0.000671 0.003487]>
+                <[tmvector3d][Pivot][-4.1155 0.0004 0.6755]>
+            >
+            <[graphics_propeller_blade][PropellerBlades][]
+                <[string8][GeometryList][ Propblades ]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][AngleID][Propeller.RotationAngle]>
+                <[uint32][RotationSpeedID][Propeller.RotationSpeed]>
+                <[uint32][DamageID][Propeller.Damaged]>
+                <[tmvector3d][Axis][ -0.999994 0.000671 0.003487 ]>
+                <[tmvector3d][Pivot][-4.1155 0.0004 0.6755]>
+                <[float64][Radius][1.67]>
+                <[string8][InputPitch][0.0]>
+            >
+        >
+    >
+>
