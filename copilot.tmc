@@ -1,7 +1,7 @@
 <[file][][]
     <[hints][][]
         // Shinden
-        <[float64][MaximumTakeoffMass][5228.0]>	
+        <[float64][MaximumTakeOffMass][5228.0]>	
         <[float64][WingSpan][11.1]>
         <[float64][WingArea][20.5]>
         <[float64][HeightOffset][-1.96]>
