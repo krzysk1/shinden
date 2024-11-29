@@ -1,6 +1,8 @@
 # shinden
 Kyushu J7W1 Shinden for Aerofly FS4
 
+**THE MODEL HAS NO FUNCTIONAL COCKPIT AND NO FURTHER DEVELOPMENT IS PLANNED**
+
 The Kyushu J7W1 Shinden fighter was a World War II Japanese propeller-driven aircraft prototype that was built in a canard design. The wings were attached to the tail section and stabilizers were on the front. The propeller was also in the rear, in a pusher configuration. The Shinden was expected to be a highly maneuverable interceptor, but only two prototypes were finished before the end of war. A gas turbine–powered version was considered, but never even reached the drawing board. (wikipedia)
 
 This is free add-on for Aerofly FS4 created by Krzysztof Kaniewski with the Aerofly FS4 SDK.
